@@ -1,0 +1,23 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch":"nodemon src/app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duon97ran2/typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duon97ran2/typescript/issues"
+  },
+  "homepage": "https://github.com/duon97ran2/typescript#readme",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
