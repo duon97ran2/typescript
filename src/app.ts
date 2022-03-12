@@ -24,3 +24,22 @@ function sum(numA:number,numB:number):number{
   return numA+numB;
 }
 console.log(sum(a,b));
+function show<T,U>(a:T,b:U):[T,U]{
+  return [a,b];
+}
+show(9,2);
+show('f','t');
+show(a,"ff");
+type Product = {
+  id:number,name:string;
+}
+
+const products = [
+  {id:1,name:"acx"},
+  {id:2,name:"bcx"},
+];
+function showP<T>(product:T):void{
+  console.log(product);
+
+}
+showP(products);

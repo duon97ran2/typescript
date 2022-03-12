@@ -18,3 +18,17 @@ function sum(numA, numB) {
     return numA + numB;
 }
 console.log(sum(a, b));
+function show(a, b) {
+    return [a, b];
+}
+show(9, 2);
+show('f', 't');
+show(a, "ff");
+const products = [
+    { id: 1, name: "acx" },
+    { id: 2, name: "bcx" },
+];
+function showP(product) {
+    console.log(product);
+}
+showP(products);
