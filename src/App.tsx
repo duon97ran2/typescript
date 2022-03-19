@@ -9,8 +9,10 @@ import WebsiteLayouts from './pages/layouts/WebsiteLayouts';
 import Home from './pages/Home';
 import AdminLayouts from './pages/layouts/AdminLayouts';
 import Dashboard from './pages/Dashboard';
-import ProductMangager from './pages/layouts/ProductMangager';
-import ProductDetail from './pages/layouts/ProductDetail';
+import ProductMangager from './pages/ProductMangager';
+import ProductDetail from './pages/ProductDetail';
+import ProductAdd from './pages/ProductAdd';
+import { add, remove } from './api/products';
 
 
 function App() {
@@ -23,6 +25,14 @@ function App() {
     };
     getProducts();
   }, []);
+  const onHandleAdd = async (product: IProduct) => {
+    const { data } = await add(product);
+    setProducts([...products, data]);
+  };
+  const onRemoveHandle = async (id: number | String) => {
+    remove(id);
+    setProducts(products.filter(item => item._id != id));
+  };
   return (
     <div className='app'>
       <main>
@@ -35,10 +45,13 @@ function App() {
               <Route path=':id' element={<ProductDetail />} />
             </Route>
           </Route>
-          <Route path='/admin' element={<AdminLayouts />} >
+          <Route path='admin' element={<AdminLayouts />} >
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="products" element={<ProductMangager />} />
+            <Route path="products">
+              <Route index element={<ProductMangager products={products} onRemove={onRemoveHandle} />} />
+              <Route path='add' element={<ProductAdd onAdd={onHandleAdd} />} />
+            </Route>
           </Route>
         </Routes>
       </main>
