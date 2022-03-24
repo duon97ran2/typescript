@@ -1,13 +1,16 @@
 import React from 'react'
-import { IProduct } from '../types/product'
+import { useNavigate } from 'react-router-dom'
+import { IProduct } from '../../../types/product'
 
 type ProductMangagerProps = {
   products: IProduct[],
-  onRemove: (id: Number | String) => void
+  onRemove: (id: Number | String | undefined) => void
 }
 const ProductMangager = (props: ProductMangagerProps) => {
+  const navigate = useNavigate();
   return (
     <div>
+      <button onClick={() => { navigate("/admin/products/add") }}>Add Product</button>
       <table>
         <thead>
           <th>#</th>

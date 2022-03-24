@@ -9,19 +9,19 @@ import WebsiteLayouts from './pages/layouts/WebsiteLayouts';
 import Home from './pages/Home';
 import AdminLayouts from './pages/layouts/AdminLayouts';
 import Dashboard from './pages/Dashboard';
-import ProductMangager from './pages/ProductMangager';
 import ProductDetail from './pages/ProductDetail';
-import ProductAdd from './pages/ProductAdd';
 import { add, remove } from './api/products';
+import ProductMangager from './pages/admin/products/ProductMangager';
+import ProductAdd from './pages/admin/products/ProductAdd';
 
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
   useEffect(() => {
     const getProducts = async () => {
-      const response = await fetch("http://localhost:4000/api/products");
-      const data = await response.json();
-      setProducts(data);
+      // const response = await fetch("http://localhost:4000/api/products");
+      // const data = await response.json();
+      // setProducts(data);
     };
     getProducts();
   }, []);
