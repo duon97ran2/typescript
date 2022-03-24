@@ -10,18 +10,18 @@ import Home from './pages/Home';
 import AdminLayouts from './pages/layouts/AdminLayouts';
 import Dashboard from './pages/Dashboard';
 import ProductDetail from './pages/ProductDetail';
-import { add, remove } from './api/products';
+import { add, list, remove, update } from './api/products';
 import ProductMangager from './pages/admin/products/ProductMangager';
 import ProductAdd from './pages/admin/products/ProductAdd';
+import ProductEdit from './pages/admin/products/ProductEdit';
 
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
   useEffect(() => {
     const getProducts = async () => {
-      // const response = await fetch("http://localhost:4000/api/products");
-      // const data = await response.json();
-      // setProducts(data);
+      const { data } = await list();
+      setProducts(data);
     };
     getProducts();
   }, []);
@@ -29,9 +29,14 @@ function App() {
     const { data } = await add(product);
     setProducts([...products, data]);
   };
-  const onRemoveHandle = async (id: number | String) => {
+  const onRemoveHandle = async (id: number | String | undefined) => {
     remove(id);
     setProducts(products.filter(item => item._id != id));
+  };
+  const onUpdateHandle = async (product: IProduct) => {
+    const { data } = await update(product);
+    console.log(data, products)
+    setProducts(products.map(item => item._id == data._id ? data : item));
   };
   return (
     <div className='app'>
@@ -51,6 +56,7 @@ function App() {
             <Route path="products">
               <Route index element={<ProductMangager products={products} onRemove={onRemoveHandle} />} />
               <Route path='add' element={<ProductAdd onAdd={onHandleAdd} />} />
+              <Route path=':id/edit' element={<ProductEdit onUpdate={onUpdateHandle} />} />
             </Route>
           </Route>
         </Routes>

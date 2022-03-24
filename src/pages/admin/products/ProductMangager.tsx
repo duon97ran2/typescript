@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { IProduct } from '../../../types/product'
 
 type ProductMangagerProps = {
@@ -16,12 +16,15 @@ const ProductMangager = (props: ProductMangagerProps) => {
           <th>#</th>
           <th>Name</th>
           <th>Price</th>
-          <th></th></thead>
+          <th></th>
+          <th></th>
+        </thead>
         <tbody>
           {props.products.map((item, index) => <tr key={index}>
             <td>{index + 1}</td>
             <td>{item.name}</td>
             <td>{item.price}</td>
+            <td><Link to={`/admin/products/${item._id}/edit`}>Edit</Link></td>
             <td><button onClick={() => props.onRemove(item._id)}>Remove</button></td>
           </tr>)}
 
