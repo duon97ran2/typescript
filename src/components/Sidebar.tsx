@@ -1,26 +1,34 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
+import { Layout, Menu } from 'antd';
+import {
+  DesktopOutlined,
+  PieChartOutlined,
+  FileOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 type Props = {}
-
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 const Sidebar = (props: Props) => {
+  const [collapse, setCollapse] = useState(false);
   return (
-    <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div className="position-sticky pt-3">
-        <ul className="nav flex-column">
-          <li className="nav-item">
-            <NavLink className="nav-link active" aria-current="page" to="/admin/dashboard">
-              Dashboard
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link active" aria-current="page" to="/admin/products">
-              Product
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Sider collapsible collapsed={collapse} onCollapse={() => { setCollapse(!collapse) }}>
+      <div className="logo" />
+      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu.Item key="1" icon={<PieChartOutlined />}>
+          <Link to="dashboard">Dashboard</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<DesktopOutlined />}>
+          <Link to="products">Products</Link>
+        </Menu.Item>
+        <Menu.Item key="9" icon={<FileOutlined />}>
+          Files
+        </Menu.Item>
+      </Menu>
+    </Sider>
   )
 }
 

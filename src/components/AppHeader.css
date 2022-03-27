@@ -1,0 +1,29 @@
+.logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.appHeader{
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+li {
+  list-style: none;
+  display: inline-block;
+}
+li{
+  font-size: 20px;
+}
+a{
+  text-decoration: none;
+}
+.nav-icon ul{
+  display: flex;
+  gap: 20px;
+}
+.ant-menu-horizontal{
+  flex: auto;
+  justify-content: center;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import 'antd/dist/antd.css';
 import ShowInfo from './components/showInfo'
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import type { IProduct } from "./types/product";
@@ -14,16 +15,26 @@ import { add, list, remove, update } from './api/products';
 import ProductMangager from './pages/admin/products/ProductMangager';
 import ProductAdd from './pages/admin/products/ProductAdd';
 import ProductEdit from './pages/admin/products/ProductEdit';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import { getCategories } from './api/categories';
+import { CategoryType } from './types/category';
 
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await list();
       setProducts(data);
     };
     getProducts();
+    const getCategoryData = async () => {
+      const { data } = await getCategories();
+      setCategories(data);
+    };
+    getCategoryData();
   }, []);
   const onHandleAdd = async (product: IProduct) => {
     const { data } = await add(product);
@@ -35,7 +46,6 @@ function App() {
   };
   const onUpdateHandle = async (product: IProduct) => {
     const { data } = await update(product);
-    console.log(data, products)
     setProducts(products.map(item => item._id == data._id ? data : item));
   };
   return (
@@ -55,10 +65,12 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
               <Route index element={<ProductMangager products={products} onRemove={onRemoveHandle} />} />
-              <Route path='add' element={<ProductAdd onAdd={onHandleAdd} />} />
-              <Route path=':id/edit' element={<ProductEdit onUpdate={onUpdateHandle} />} />
+              <Route path='add' element={<ProductAdd onAdd={onHandleAdd} categories={categories} />} />
+              <Route path=':id/edit' element={<ProductEdit onUpdate={onUpdateHandle} categories={categories} />} />
             </Route>
           </Route>
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
         </Routes>
       </main>
     </div>
