@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import AppHeader from '../../components/AppHeader';
 import Search from 'antd/lib/input/Search';
+import AppFooter from '../../components/AppFooter';
 
 
 
@@ -39,7 +40,7 @@ const WebsiteLayouts = (props: Props) => {
           </Breadcrumb>
           <div className="site-layout-content"><Outlet /></div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}><AppFooter /></Footer>
       </Layout>
       {/* <Header />
       <main>

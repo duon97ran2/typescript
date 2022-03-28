@@ -53,7 +53,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<WebsiteLayouts />}>
-            <Route index element={<Home />} />
+            <Route index element={<Home products={products} />} />
             <Route path='about' element={"About Page"} />
             <Route path='products'>
               <Route index element={"Product Detail"} />

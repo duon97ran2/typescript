@@ -1,33 +1,48 @@
-import { Card, Row, Col } from 'antd'
+import { Card, Row, Col, Tooltip } from 'antd'
 import React from 'react'
+import { EllipsisOutlined, HeartFilled, ShoppingFilled, ShoppingTwoTone } from '@ant-design/icons';
+import { color } from '@mui/system';
+import { IProduct } from '../types/product';
 
-type Props = {}
+const { Meta } = Card;
+
+
+type Props = {
+  products: IProduct[],
+}
 const ProductPanel = (props: Props) => {
   return (
     <div>
       <div className="site-card-wrapper">
-        <Row gutter={16}>
-          <Col span={8}>
-            <Card title="Card title" className='product-item' bordered={true}>
-              <img src="https://i7.pngguru.com/preview/562/852/893/hoodie-t-shirt-clothing-bluza-sweater-t-shirt.jpg" alt="" />
-              <h4>Price</h4>
-              <button>Buy Now</button>
+        <Row gutter={[30, 30]}>
+          {props.products.map((item, index) => <Col span={8} key={index + 1}>
+            <Card title={item.name} hoverable
+              style={{ width: "100%" }}
+              cover={
+                <img
+                  alt="example"
+                  src={item.image}
+                />
+              }
+              headStyle={{ fontSize: "24px", textTransform: "capitalize", fontWeight: "bold", background: "#1890ff", color: "white" }}
+              actions={[
+                <Tooltip placement='top' title="Add to cart">
+                  <ShoppingTwoTone style={{ fontSize: "20px" }} key="addtocart" />
+                </Tooltip>,
+                <Tooltip placement='top' title="Add to favorite">
+                  <HeartFilled style={{ fontSize: "20px", color: "crimson" }} key="Heart" />
+                </Tooltip>,
+                <Tooltip placement='top' title="View more">
+                  <EllipsisOutlined style={{ fontSize: "20px" }} key="ellipsis" />
+                </Tooltip>
+              ]}
+            >
+              <Meta
+                title={`Price: ${item.price}$`}
+                description={item.description} style={{ minHeight: "10vh" }}
+              />
             </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" className='product-item' bordered={true}>
-              <img src="https://i7.pngguru.com/preview/562/852/893/hoodie-t-shirt-clothing-bluza-sweater-t-shirt.jpg" alt="" />
-              <h4>Price</h4>
-              <button>Buy Now</button>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" className='product-item' bordered={true}>
-              <img src="https://i7.pngguru.com/preview/562/852/893/hoodie-t-shirt-clothing-bluza-sweater-t-shirt.jpg" alt="" />
-              <h4>Price</h4>
-              <button>Buy Now</button>
-            </Card>
-          </Col>
+          </Col>)}
 
         </Row>
       </div>
