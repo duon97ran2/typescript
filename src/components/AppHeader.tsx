@@ -1,4 +1,4 @@
-import { ConfigProvider, Dropdown, Menu } from 'antd'
+import { Dropdown, Menu } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./AppHeader.css"
@@ -7,11 +7,7 @@ import { SearchOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/
 type Props = {
   onToggle: () => void
 }
-ConfigProvider.config({
-  theme: {
-    primaryColor: "green",
-  }
-});
+
 const AppHeader = (props: Props) => {
   const pageLink = [
     {

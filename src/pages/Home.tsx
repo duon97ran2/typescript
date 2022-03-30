@@ -37,13 +37,13 @@ const Home = (props: Props) => {
       </div>
 
 
-      <h2 style={{ fontSize: "3em", color: "#1890ff" }}>Categories</h2>
+      <h2 style={{ fontSize: "3em", color: "var(--ant-primary-color)" }}>Categories</h2>
       <CategoryPanel />
-      <h2 style={{ fontSize: "3em", color: "#1890ff" }}>Our Products</h2>
+      <h2 style={{ fontSize: "3em", color: "var(--ant-primary-color)" }}>Our Products</h2>
       <ProductPanel products={props.products} />
-      <h2 style={{ fontSize: "3em", color: "#1890ff" }}>New Arrivals</h2>
+      <h2 style={{ fontSize: "3em", color: "var(--ant-primary-color)" }}>New Arrivals</h2>
       <NewArrivals />
-      <h2 style={{ fontSize: "3em", color: "#1890ff" }}>Customer Reviews</h2>
+      <h2 style={{ fontSize: "3em", color: "var(--ant-primary-color)" }}>Customer Reviews</h2>
       <CustomerReview />
     </div>
   )

@@ -61,7 +61,7 @@ const AppFooter = (props: Props) => {
           </Form>
         </Col>
       </Row>
-      <h5 style={{ background: "#1890ff", marginTop: "20px", padding: "20px", color: "white" }}>@Copyright by duongtaph13476</h5>
+      <h5 style={{ background: "var(--ant-primary-color)", marginTop: "20px", padding: "20px", color: "white" }}>@Copyright by duongtaph13476</h5>
     </div >
   )
 }

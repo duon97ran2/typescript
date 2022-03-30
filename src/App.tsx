@@ -19,10 +19,17 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import { getCategories } from './api/categories';
 import { CategoryType } from './types/category';
+import { UserType } from './types/user';
+import { ConfigProvider } from "antd"
 
-
+ConfigProvider.config({
+  theme: {
+    primaryColor: "#1890ff",
+  },
+});
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [user, setUser] = useState<UserType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
   useEffect(() => {
     const getProducts = async () => {
@@ -30,6 +37,8 @@ function App() {
       setProducts(data);
     };
     getProducts();
+  }, []);
+  useEffect(() => {
     const getCategoryData = async () => {
       const { data } = await getCategories();
       setCategories(data);
@@ -51,6 +60,7 @@ function App() {
   return (
     <div className='app'>
       <main>
+
         <Routes>
           <Route path='/' element={<WebsiteLayouts />}>
             <Route index element={<Home products={products} />} />

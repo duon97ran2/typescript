@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button, Checkbox, message, Input, Card } from "antd"
 import { login } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
+import { authenticated } from '../utils/localStorage';
 
 type Props = {}
 
@@ -10,9 +11,13 @@ const Login = (props: Props) => {
   const onFinish = async (post: any) => {
     try {
       const { data } = await login(post);
-      message.success(data.message);
-      localStorage.setItem("user", JSON.stringify(data));
-      setTimeout(() => { navigate("/") }, 3000)
+      authenticated(data.userData, () => {
+        message.success(data.message, 2, () => {
+          navigate("/");
+        });
+      })
+
+
     } catch (error: any) {
       const { response } = error;
       message.error(response.data.message)
@@ -20,7 +25,7 @@ const Login = (props: Props) => {
 
   };
   const onFinishFailed = (error: any) => {
-    message.error('Some errors happen');
+    message.error('Some errors may happen');
   };
   return (
     <Card title="Login" style={{ margin: "100px auto", width: "400px" }}>

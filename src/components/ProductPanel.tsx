@@ -24,7 +24,7 @@ const ProductPanel = (props: Props) => {
                   src={item.image}
                 />
               }
-              headStyle={{ fontSize: "24px", textTransform: "capitalize", fontWeight: "bold", background: "#1890ff", color: "white" }}
+              headStyle={{ fontSize: "24px", textTransform: "capitalize", fontWeight: "bold", background: "var(--ant-primary-color)", color: "white" }}
               actions={[
                 <Tooltip placement='top' title="Add to cart">
                   <ShoppingTwoTone style={{ fontSize: "20px" }} key="addtocart" />
